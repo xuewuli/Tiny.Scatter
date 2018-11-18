@@ -1,0 +1,5 @@
+{
+  "mangle": {
+    "reserved": ["TinyScatter","TinyEOS", "TinyETH", "TinyTRX", "TinyIdentitys"]
+  }
+}

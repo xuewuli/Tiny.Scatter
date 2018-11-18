@@ -1,0 +1,3 @@
+.nyc_support
+coverage
+.node_modules

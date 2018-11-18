@@ -1,0 +1,27 @@
+{
+  "env": {
+    "es6": true,
+    "mocha": true
+  },
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["import", "prettier"],
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "no-underscore-dangle": "error",
+    "no-console": "error",
+    "class-methods-use-this": ["off"],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true,
+        "printWidth": 90,
+        "singleQuote": true,
+        "arrowParens": "always"
+      }
+    ],
+    "func-names": ["error", "always"],
+    "comma-dangle": ["error", "never"],
+    "no-param-reassign": ["error", { "props": false }],
+    "max-len": ["error", 120, { "ignoreRegExpLiterals": true }]
+  }
+}
