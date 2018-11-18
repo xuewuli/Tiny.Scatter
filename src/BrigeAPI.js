@@ -22,8 +22,9 @@ export default class BrigeAPI {
             data: JSON.stringify(payload.payload.transaction)
           });
         case 'requestArbitrarySignature':
-          return BrigeAPI.postMessage('signEOSMsg', payload.id, payload.payload);
-
+          return BrigeAPI.postMessage('signEOSMsg', payload.id, {
+            data: JSON.stringify(payload.payload)
+          });
         case 'getOrRequestIdentity':
         case 'identityFromPermissions':
         case 'authenticate':
