@@ -1,7 +1,5 @@
 /* global window */
 
-import 'babel-polyfill';
-
 import PluginRepository from './PluginRepository';
 import BrigeAPI from './BrigeAPI';
 import TinyEOS from './TinyEOS';

@@ -8,9 +8,9 @@
             "ios >= 8",
             "android >= 4.2"
           ]
-        },
-        "useBuiltIns": true
+        }
       }
     ]
-  ]
+  ],
+  "plugins": ["transform-runtime"]
 }
