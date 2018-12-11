@@ -17,7 +17,7 @@ extension WKWebViewConfiguration {
         """
         
         function onSignEOSSuccessful(id, value) {
-            BrigeAPI.sendResponse(id, value)
+            BrigeAPI.sendResponse(id, JSON.parse(value))
         }
         function onSignEOSError(id, error) {
             BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
