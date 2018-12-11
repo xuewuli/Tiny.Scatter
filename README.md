@@ -20,7 +20,7 @@ extension WKWebViewConfiguration {
             BrigeAPI.sendResponse(id, value)
         }
         function onSignEOSError(id, error) {
-            BrigeAPI.sendError(id, JSON.stringify(EOSSignatureError))
+            BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
         }
 
         TinyIdentitys.initEOS("\(account)", "\(publicKey)");
