@@ -45,6 +45,11 @@ extension WKWebViewConfiguration {
 ## Additional Android injection init.js, your need thirdpart lib (or roll you own) to accomplish the injection.
 ```javascript
 
+/**
+/* use webView.evaluateJavascript to call when your finish the sign
+/* @param id as number , you got it when XWebView.signEOS called
+/* @param value as string, with this format '{"signatures":["SIG_K1_..."]}'
+**/
 function onSignEOSSuccessful(id, value) {
     BrigeAPI.sendResponse(id, JSON.parse(value))
 }
