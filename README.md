@@ -42,3 +42,37 @@ extension WKWebViewConfiguration {
     }
 }
 ```
+## Additional injection init js
+```javascript
+
+function onSignEOSSuccessful(id, value) {
+    BrigeAPI.sendResponse(id, JSON.parse(value))
+}
+function onSignEOSError(id, error) {
+    BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
+}
+
+const messageHandlers = {
+    signEOS: {
+        postMessage: function (param) {
+            XWebView.signEOS(param.id, param.object.data);
+        }
+    },
+    signEOSMsg: {
+        postMessage: function (param) {
+            XWebView.signEOSMsg(param.id, param.object.data);
+        }
+    }
+}
+
+window.webkit = { messageHandlers };
+
+TinyIdentitys.initEOS("%1$s", "%2$s");
+
+const scatter = new TinyScatter();
+scatter.loadPlugin(new TinyEOS());
+
+window.scatter = scatter;
+
+document.dispatchEvent(new CustomEvent('scatterLoaded'));
+```
