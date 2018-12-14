@@ -1,7 +1,7 @@
 # Tiny.Scatter
 Scatter javascript warpper for webview
 
-## inject to WKWebView
+## inject to iOS WKWebView
 ```swift
 extension WKWebViewConfiguration {
     static func makeScatterEOSSupport(account: String, publicKey: String, in messageHandler: WKScriptMessageHandler, with config: WKWebViewConfiguration) -> Void {
@@ -42,7 +42,7 @@ extension WKWebViewConfiguration {
     }
 }
 ```
-## Additional injection init js
+## Additional Android injection init.js, your need thirdpart lib (or roll you own) to accomplish the injection.
 ```javascript
 
 function onSignEOSSuccessful(id, value) {
@@ -55,6 +55,7 @@ function onSignEOSError(id, error) {
 const messageHandlers = {
     signEOS: {
         postMessage: function (param) {
+            //XWebView is your @JavascriptInterface
             XWebView.signEOS(param.id, param.object.data);
         }
     },
