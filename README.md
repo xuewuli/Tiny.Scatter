@@ -15,7 +15,11 @@ extension WKWebViewConfiguration {
         
         js +=
         """
-        
+        // value as string "SIG_K1_..."
+        function onSignEOSMessageSuccessful(id, value) {
+            BrigeAPI.sendResponse(id, value)
+        }
+
         // value as string with this format '{"signatures":["SIG_K1_..."]}'
         function onSignEOSSuccessful(id, value) {
             BrigeAPI.sendResponse(id, JSON.parse(value))
@@ -53,6 +57,12 @@ extension WKWebViewConfiguration {
 function onSignEOSSuccessful(id, value) {
     BrigeAPI.sendResponse(id, JSON.parse(value))
 }
+
+// value as string "SIG_K1_..."
+function onSignEOSMessageSuccessful(id, value) {
+    BrigeAPI.sendResponse(id, value)
+}
+
 function onSignEOSError(id, error) {
     BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
 }
