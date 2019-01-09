@@ -4,7 +4,9 @@ import { Blockchains } from './Blockchains';
 import * as PluginTypes from './PluginTypes';
 import BrigeAPI from './BrigeAPI';
 
-const proxy = (dummy, handler) => new Proxy(dummy, handler);
+const ProxyPolyfill = require('./proxyPolyfill');
+
+const proxy = (dummy, handler) => new ProxyPolyfill(dummy, handler);
 
 export default class TinyEOS extends Plugin {
   constructor() {

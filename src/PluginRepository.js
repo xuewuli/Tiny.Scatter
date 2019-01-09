@@ -20,7 +20,14 @@ class PluginRepositorySingleton {
   }
 
   plugin(name) {
-    return this.plugins.find((plugin) => plugin.name === name);
+    for(let k = 0, len = this.plugins.length; k < len; k++) {
+      let plugin = this.plugins[k];
+      if (plugin.name === name) {
+        return plugin;
+      }
+    }
+
+    return;
   }
 
   async endorsedNetworks() {

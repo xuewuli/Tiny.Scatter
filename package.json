@@ -4,7 +4,6 @@
   "description": "a tiny scatter warp",
   "main": "src/index.js",
   "scripts": {
-    "build_old": "rm -rf ./dist && parcel build ./src/index.js -o tiny_scatter.js -d ./dist",
     "lint": "eslint --quiet --fix ./src",
     "build": "rm -rf ./build && babel ./src -d ./build && browserify ./build/index.js > ./dist/tiny_scatter.js && uglifyjs ./dist/tiny_scatter.js > ./dist/tiny_scatter_min.js"
   },
@@ -26,13 +25,12 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "browserify": "^16.2.3",
-    "eslint": "^5.5.0",
+    "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^2.6.2",
-    "parcel-bundler": "^1.10.3",
-    "prettier": "^1.14.2",
+    "prettier": "^1.15.3",
     "uglify-js": "^3.4.9"
   }
 }

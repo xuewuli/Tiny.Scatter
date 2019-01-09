@@ -3,7 +3,6 @@
 import PluginRepository from './PluginRepository';
 import BrigeAPI from './BrigeAPI';
 import TinyEOS from './TinyEOS';
-import TinyError from './TinyError';
 import TinyIdentitys from './TinyIdentitys';
 
 const checkForExtension = (resolve, tries = 0) => {
@@ -201,7 +200,3 @@ window.TinyScatter = TinyScatter;
 window.TinyEOS = TinyEOS;
 window.BrigeAPI = BrigeAPI;
 window.TinyIdentitys = TinyIdentitys;
-window.EOSSignatureError = new TinyError(
-  'identity_rejected',
-  'User rejected the provision of an Identity'
-);

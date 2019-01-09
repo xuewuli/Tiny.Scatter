@@ -19,8 +19,6 @@ export default class Plugin {
   }
 
   isValid() {
-    return Object.keys(PluginTypes)
-      .map((x) => PluginTypes[x])
-      .includes(this.type);
+    return true;
   }
 }
