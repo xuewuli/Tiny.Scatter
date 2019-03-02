@@ -92,5 +92,5 @@ scatter.loadPlugin(new TinyEOS());
 
 window.scatter = scatter;
 
-setTimeout(function() {document.dispatchEvent(new CustomEvent('scatterLoaded'));}, 1000};
+setTimeout(function() {document.dispatchEvent(new CustomEvent('scatterLoaded'));}, 1000);
 ```
