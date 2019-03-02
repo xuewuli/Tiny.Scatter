@@ -40,6 +40,8 @@ extension WKWebViewConfiguration {
         document.dispatchEvent(new CustomEvent('scatterLoaded'));
 
         """
+        let onLoadScript = WKUserScript(source: "document.dispatchEvent(new CustomEvent('scatterLoaded'))", injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        config.userContentController.addUserScript(onLoadScript)
         let userScript = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         config.userContentController.add(messageHandler, name: XMethod.signEOS.rawValue)
         config.userContentController.addUserScript(userScript)
@@ -90,5 +92,5 @@ scatter.loadPlugin(new TinyEOS());
 
 window.scatter = scatter;
 
-document.dispatchEvent(new CustomEvent('scatterLoaded'));
+setTimeout(function() {document.dispatchEvent(new CustomEvent('scatterLoaded'));}, 1000};
 ```
