@@ -48,7 +48,7 @@ extension WKWebViewConfiguration {
     }
 }
 ```
-## Additional Android injection init.js, your need thirdpart lib (or roll you own) to accomplish the injection.
+## Additional Android injection init.js, your need thirdpart lib suchlike https://github.com/TrustWallet/Web3View  (or roll you own) to accomplish the injection.
 ```javascript
 
 /**
