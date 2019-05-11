@@ -1,5 +1,5 @@
 # Tiny.Scatter
-Scatter javascript warpper for webview
+Scatter compatible eos injection library
 
 ## inject to iOS WKWebView
 ```swift
@@ -15,17 +15,17 @@ extension WKWebViewConfiguration {
         
         js +=
         """
-        // value as string "SIG_K1_..."
+        // 'value' as string. "SIG_K1_..."
         function onSignEOSMessageSuccessful(id, value) {
             BrigeAPI.sendResponse(id, value)
         }
 
-        // value as string with this format '{"signatures":["SIG_K1_..."]}'
+        // 'value' as string. '{"signatures":["SIG_K1_..."]}'
         function onSignEOSSuccessful(id, value) {
             BrigeAPI.sendResponse(id, JSON.parse(value))
         }
         
-        // error as string
+        // 'error' as string
         function onSignEOSError(id, error) {
             BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
         }
@@ -48,14 +48,13 @@ extension WKWebViewConfiguration {
     }
 }
 ```
-## Additional Android injection init.js, your need thirdpart lib suchlike https://github.com/TrustWallet/Web3View  (or roll you own) to accomplish the injection.
+## Additional init.js for Android. you need thirdpart lib such as https://github.com/TrustWallet/Web3View  (or roll you own) to accomplish the injection.
 ```javascript
 
-/**
-/* use webView.evaluateJavascript to call when your finish the sign
-/* @param id as number , you got it when XWebView.signEOS called
-/* @param value as string, with this format '{"signatures":["SIG_K1_..."]}'
-**/
+// callback when you finish the sign. use webView.evaluateJavascript 
+
+// 'id' as number. it's the param.id when XWebView.signEOS called
+// 'value' as string. '{"signatures":["SIG_K1_..."]}'
 function onSignEOSSuccessful(id, value) {
     BrigeAPI.sendResponse(id, JSON.parse(value))
 }
@@ -72,7 +71,7 @@ function onSignEOSError(id, error) {
 const messageHandlers = {
     signEOS: {
         postMessage: function (param) {
-            //XWebView is your @JavascriptInterface
+            //XWebView is export from java @JavascriptInterface, is based on your implement.
             XWebView.signEOS(param.id, param.object.data);
         }
     },
