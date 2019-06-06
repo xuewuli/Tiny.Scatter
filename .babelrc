@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/env",
       {
         "targets": {
           "browsers": [
@@ -14,10 +14,9 @@
   ],
   
   "plugins": [
-    ["transform-runtime", {
+    ["@babel/plugin-transform-runtime", {
+      "corejs": 2,
       "helpers": true,
-      "polyfill": true,
       "regenerator": true,
-      "moduleName": "babel-runtime"
     }]
   ]}
