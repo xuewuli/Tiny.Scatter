@@ -65,7 +65,7 @@ export default class BrigeAPI {
   }
 
   static postMessage(handler, id, data) {
-    window.webkit.messageHandlers[handler].postMessage({
+    window.tinyBrige[handler]({
       name: handler,
       object: data,
       id

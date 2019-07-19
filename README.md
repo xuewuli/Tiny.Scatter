@@ -1,6 +1,12 @@
 # Tiny.Scatter
 Scatter compatible eos injection library
 
+## Demo
+a simple `react-native` demo in `./demo` dir.
+
+(only test on iOS, should work on Android too.)
+![demo screenshot](/doc/demo.jpg)
+
 ## inject to iOS WKWebView
 ```swift
 extension WKWebViewConfiguration {
@@ -28,6 +34,15 @@ extension WKWebViewConfiguration {
         // 'error' as string
         function onSignEOSError(id, error) {
             BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
+        }
+
+        window.tinyBrige = {
+            signEOS: function (param) {
+                window.webkit.messageHandlers['signEOS'].postMessage(param)
+            },
+            signEOSMsg: function (param) {
+                window.webkit.messageHandlers['signEOSMsg'].postMessage(param)
+            }
         }
 
         TinyIdentitys.initEOS("\(account)", "\(publicKey)");
@@ -68,21 +83,15 @@ function onSignEOSError(id, error) {
     BrigeAPI.sendError(id, {"type": "signature_rejected", "message": error, "code": 402, "isError": true})
 }
 
-const messageHandlers = {
-    signEOS: {
-        postMessage: function (param) {
-            //XWebView is export from java @JavascriptInterface, is based on your implement.
-            XWebView.signEOS(param.id, param.object.data);
-        }
-    },
-    signEOSMsg: {
-        postMessage: function (param) {
-            XWebView.signEOSMsg(param.id, param.object.data);
-        }
-    }
+window.tinyBrige = {
+  signEOS: function (param) {
+    //XWebView is export from java @JavascriptInterface, is based on your implement.
+    XWebView.signEOS(param.id, param.object.data);
+  },
+  signEOSMsg: function (param) {
+    XWebView.signEOSMsg(param.id, param.object.data);
+  }
 }
-
-window.webkit = { messageHandlers };
 
 TinyIdentitys.initEOS("%1$s", "%2$s");
 

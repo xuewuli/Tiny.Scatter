@@ -20,19 +20,18 @@ class PluginRepositorySingleton {
   }
 
   plugin(name) {
-    for(let k = 0, len = this.plugins.length; k < len; k++) {
-      let plugin = this.plugins[k];
+    for (let k = 0, len = this.plugins.length; k < len; k++) {
+      const plugin = this.plugins[k];
       if (plugin.name === name) {
         return plugin;
       }
     }
-
-    return;
+    return null;
   }
 
   async endorsedNetworks() {
-    return await Promise.all(
-      this.signatureProviders().map(async (plugin) => await plugin.getEndorsedNetwork())
+    return Promise.all(
+      this.signatureProviders().map(async (plugin) => plugin.getEndorsedNetwork())
     );
   }
 }
