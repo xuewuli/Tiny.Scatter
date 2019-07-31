@@ -2,7 +2,7 @@
 
 import TinyIdentitys from './TinyIdentitys';
 
-const genId = () => new Date().getTime() + Math.floor(Math.random() * 1000);
+const genId = () => (Date.now() * 100 + Math.floor(Math.random() * 100)).toString(32);
 
 export default class BrigeAPI {
   static sendAsync(payload) {

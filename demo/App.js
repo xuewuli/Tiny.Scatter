@@ -67,7 +67,7 @@ const App = () => {
         <WebView
           ref={r => (this.webref = r)}
           style={styles.webView}
-          source={{uri:'https://chain.pro/candybox'}}
+          source={{uri:'https://w.whaleex.com.cn/wallet'}}
           javaScriptEnabled={true}
           injectedJavaScript={inject}
           onMessage = {(event) =>{
@@ -78,10 +78,14 @@ const App = () => {
               [
                 {text: 'Yes', onPress: () => {
                   // fake signatures, will not really successed.
-                  this.webref.injectJavaScript(`onSignEOSSuccessful(${data.id}, '{"signatures":["SIG_K1_K5bDLVGDodLTQVXqXk6UcpTqGo8aZ4dwJAfJmz3hwN55CLHkhMTgb1HURbdMQyPFkpA2uoikxdWqqpnjxUtXa3xRMp5oH7"]}')`);
+                  if (data.type === 'signEOS') {
+                    this.webref.injectJavaScript(`onSignEOSSuccessful('${data.id}', '{"signatures":["SIG_K1_K5bDLVGDodLTQVXqXk6UcpTqGo8aZ4dwJAfJmz3hwN55CLHkhMTgb1HURbdMQyPFkpA2uoikxdWqqpnjxUtXa3xRMp5oH7"]}')`);
+                  } else {
+                    this.webref.injectJavaScript(`onSignEOSMessageSuccessful('${data.id}', 'SIG_K1_K5bDLVGDodLTQVXqXk6UcpTqGo8aZ4dwJAfJmz3hwN55CLHkhMTgb1HURbdMQyPFkpA2uoikxdWqqpnjxUtXa3xRMp5oH7')`);
+                  } 
                 }},
                 {text: 'No', onPress: () => {
-                  this.webref.injectJavaScript(`onSignEOSError(${data.id}, 'cancled')`);
+                  this.webref.injectJavaScript(`onSignEOSError('${data.id}', 'cancled')`);
                 }, style: 'cancel'},
               ],
               { cancelable: false }
