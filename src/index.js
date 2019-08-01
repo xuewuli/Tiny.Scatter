@@ -3,6 +3,9 @@
 import PluginRepository from './PluginRepository';
 import BrigeAPI from './BrigeAPI';
 import TinyEOS from './TinyEOS';
+import TinyTRX from './TinyTRX';
+import TinyETH from './TinyETH';
+
 import TinyIdentitys from './TinyIdentitys';
 
 const checkForExtension = (resolve, tries = 0) => {
@@ -198,5 +201,8 @@ export default class TinyScatter {
 
 window.TinyScatter = TinyScatter;
 window.TinyEOS = TinyEOS;
+window.TinyTRX = TinyTRX;
+window.TinyETH = TinyETH;
+
 window.BrigeAPI = BrigeAPI;
 window.TinyIdentitys = TinyIdentitys;

@@ -1,11 +1,11 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 
-const filePath = './dist/tiny_scatter_min.js';
+const filePath = './dist/tiny_scatter.js';
 
-async function doConvert() {
-  const js = await fs.readFile(filePath, 'utf-8');
+function doConvert() {
+  const js = fs.readFileSync(filePath, 'utf8');
   const json = `module.exports = ${JSON.stringify(js)};`;
-  await fs.writeFile('./demo/inject/tiny_scatter.js', json);
+  fs.writeFileSync('./demo/inject/tiny_scatter.js', json);
 }
 
 doConvert();

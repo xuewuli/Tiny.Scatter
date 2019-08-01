@@ -50,11 +50,31 @@ window.tinyBrige = {
 }
 
 TinyIdentitys.initEOS("lixuewu11111", "EOS7wbfh16cqjgVkw3AAL6E6bahe3UFuidX5RLZ48K3quT7xppdDu");
+TinyIdentitys.initTRX("TAAcUE44wwG3NtoepMZrZDfUKSdfZydJLk", "");
+TinyIdentitys.initETH("0xb544cead8b660aae9f2e37450f7be2ffbc501793", "");
+
 
 const scatter = new TinyScatter();
 scatter.loadPlugin(new TinyEOS());
+scatter.loadPlugin(new TinyETH());
+scatter.loadPlugin(new TinyTRX());
 
 window.scatter = scatter;
+
+try {
+  if (typeof ScatterJS !== 'undefined') {
+    window.ScatterJS = new Proxy(ScatterJS, {
+      get: function (obj, prop) {
+        if (prop === 'scatter') {
+          return window.scatter;
+        }
+        return obj[prop];
+      }
+    })
+  }
+} catch (e) {
+  console.log(e);
+}
 
 setTimeout(function() {document.dispatchEvent(new CustomEvent('scatterLoaded'));}, 1000);
 
@@ -67,7 +87,7 @@ const App = () => {
         <WebView
           ref={r => (this.webref = r)}
           style={styles.webView}
-          source={{uri:'https://w.whaleex.com.cn/wallet'}}
+          source={{uri:'https://atomic.kofo.io/mswap/#/'}} //https://w.whaleex.com.cn/wallet
           javaScriptEnabled={true}
           injectedJavaScript={inject}
           onMessage = {(event) =>{

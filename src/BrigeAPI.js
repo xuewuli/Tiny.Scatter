@@ -28,14 +28,17 @@ export default class BrigeAPI {
         case 'getOrRequestIdentity':
         case 'identityFromPermissions':
         case 'authenticate':
-          return BrigeAPI.sendResponse(payload.id, TinyIdentitys.eos);
+          return BrigeAPI.sendResponse(payload.id, TinyIdentitys.getIdentity());
         case 'forgetIdentity':
         case 'requestAddNetwork':
           return BrigeAPI.sendResponse(payload.id, true);
         case 'getVersion':
           return BrigeAPI.sendResponse(payload.id, '9.6.0');
         case 'getPublicKey':
-          return BrigeAPI.sendResponse(payload.id, TinyIdentitys.eos.publicKey);
+          return BrigeAPI.sendResponse(
+            payload.id,
+            TinyIdentitys.getAccounts(payload.blockchain).publicKey
+          );
         case 'linkAccount':
         case 'hasAccountFor':
         case 'requestTransfer':
